@@ -1,3 +1,24 @@
+html {
+  font-size: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
 textarea {
     align-content: center;
     text-align: center;
@@ -6,26 +27,33 @@ textarea {
     align-content: center;
     text-align: center;
 }
-img {
-    height: 350px;
-    width: 350px;
-    border-radius: 50px;
-    padding: 20px;
-}
 
-header {
-    text-align: center;
-    color: blue;
-    padding: 20px;
-}
+
 .card {
     width: 350px;
-    height: 350px;
-    border-radius: 50px;
+    height: 245px;
+    border-radius: 50px, 50px;
     float: left;
     margin: 10px;
+    text-align: center;
+    padding: 50px;
+    
 }
 #header {
     align-content: center;
     text-align: center;
+}
+
+.container {
+    text-align: center;
+    align-content: center;
+    position: relative;
+
+}
+img {
+    height: 250px;
+    border-radius: 50px;
+    width: 250px;
+    object-fit: cover;
+    
 }

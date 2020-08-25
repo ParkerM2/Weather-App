@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
-    <link rel="script" href="./assets/script.js">
+    
     <title>Weather-Extravaganza</title>
 </head>
 <body>
@@ -14,28 +14,63 @@
 <h1 class="display-4">Weather App</h1>
 <form action="input-form">
 <textarea name="city" id="city" cols="30" rows="1" placeholder="Enter City Name"></textarea>
+<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" name="previous-search" id="pastCity" cols="30" rows="1"></div>
+<div class="btn-group btn-group-lg" role="group" aria-label="First group" data-toggle=""buttons"">
+    <button type="button" class="btn btn-secondary">Previous Search</button>
+    <button type="button" class="btn btn-secondary">Previous Search</button>
+    <button type="button" class="btn btn-secondary">Previous Search</button>
+    <button type="button" class="btn btn-secondary">Previous Search</button>
+  </div>
 </form>
-<textarea name="previous-search" id="pastCity" cols="30" rows="5"></textarea>
-</div>
-<div class="container-fluid">
-    <div class="card">
-        <img src="./assets/lightning.jpg" alt="weather" class="present">
-    </div>
-    <div class="card">
-        <img src="./assets/snow.jpg" alt="weather" class="futureOne">
-    </div>
-    <div class="card">
-        <img src="./assets/Sun.jpg" alt="weather" class="futureTwo">
-    </div>
-        <div class="card">
-        <img src="./assets/lightning.jpg" alt="weather" class="futureThree">
-    </div>
-    <div class="card">
-        <img src="./assets/cloud.jpg" alt="weather" class="futureFour">
-    </div>
-</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</div>
+<div class="container row">
+    <div class="card embed-responsive-16by9">
+        <img class="card-img-top embed-responsive-item" src="./assets/lightning.jpg" alt="weather">
+        <div class="temperature"><p>°<span>C</span></p></div>
+        <div class="temp-description"><p></p></div>
+        <div class="city-state"><p>Austin,Tx</p></div>
+        <div class="dateOf"><p>8/25/2020</p></div>
+        
+       
+
+    </div>
+    <div class="card embed-responsive-16by9">
+        <img src="./assets/snow.jpg" alt="weather" class="card-img-top embed-responsive-item">
+        <div class="temperature"><p>°<span>C</span></p></div>
+        <div class="temp-description"><p></p></div>
+        <div class="city-state"><p>Austin,Tx</p></div>
+        <div class="dateOf"><p>8/25/2020</p></div>
+       
+    </div>
+    </div>
+    <div class="card embed-responsive-16by9">
+        <img src="./assets/Sun.jpg" alt="weather" class="card-img-top embed-responsive-item">
+        <div class="temperature"><p>°<span>C</span></p></div>
+        <div class="temp-description"><p></p></div>
+        <div class="city-state"><p>Austin,Tx</p></div>
+        <div class="dateOf"><p>8/25/2020</p></div>
+    </div>
+    </div>
+    <div class="card embed-responsive-16by9">
+        <img src="./assets/lightning.jpg" alt="weather" class="card-img-top embed-responsive-item">
+        <div class="temperature"><p>°<span>C</span></p></div>
+        <div class="temp-description"><p></p></div>
+        <div class="city-state"><p>Austin,Tx</p></div>
+        <div class="dateOf"><p>8/25/2020</p></div>
+    </div>
+    </div>
+    <div class="card embed-responsive-16by9">
+        <img src="./assets/cloud.jpg" alt="weather" class="card-img-top embed-responsive-item">
+        <div class="temperature"><p>°<span>C</span></p></div>
+        <div class="temp-description"><p></p></div>
+        <div class="city-state"><p>Austin,Tx</p></div>
+        <div class="dateOf"><p>8/25/2020</p></div>
+    </div>
+    </div>
+</div>
+    <script defer src="./assets/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
 </body>
