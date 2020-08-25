@@ -74,5 +74,17 @@ function cToF(temperature) {
 weather.temperature.value = 300 - 273;
 
 
-//button code
+//button code to submit the city to the api
+
+$(document).ready(function () {
+	$(".btn").click(function () {
+		var city = $("#city").val();
+		if (city != '') {
+			url: "api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a",
+
+		} else {
+			$("#error").html("Cannot be empty ya filthy animal");
+		}
+	})
+})
 
