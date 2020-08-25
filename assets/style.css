@@ -18,7 +18,10 @@ header {
     color: blue;
     padding: 20px;
 }
-
-.header {
-    height: 150px;
+.card {
+    width: 350px;
+    height: 350px;
+    border-radius: 50px;
+    float: left;
 }
+
