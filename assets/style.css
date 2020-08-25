@@ -52,8 +52,12 @@ textarea {
 }
 img {
     height: 250px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     width: 250px;
     object-fit: cover;
     
+}
+button {
+  padding: 10px;
+  margin-bottom: 20px;
 }

@@ -4,7 +4,7 @@ var tempElement = document.querySelector(".temperature p")
 var descElement = document.querySelector(".temperature-description p")
 var locationElement = document.querySelector(".city-state p")
 var dateOf = document.querySelector(".dateOf p")
-
+var kelvin = 273;
 
 // Creating Weather Object
 const weather = {
@@ -23,7 +23,7 @@ const weather = {
 var settings = {
 	"async": true,
 	"crossDomain": true,
-	"url":  "https://community-open-weather-map.p.rapidapi.com/forecast?q=Greenville%252CMS",
+	"url":  "https://api.openweathermap.org/data/2.5/forecast?q=austin,tx&appid=aadef2e30a8efe5bb715019df5f2a42a",
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
@@ -37,14 +37,27 @@ $.ajax(settings).done(function (response) {
 
 
 // changing the text of the HTML function
-function showWeather(city, state) {
-	let api = `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city}%252C${state}`
+function pullWeather(city, state) {
+	let api = `https://api.openweathermap.org/data/2.5/forecast?q={city name},{state code}&appid=aadef2e30a8efe5bb715019df5f2a42a`
 	fetch(api).then(function (response) {
 		let data = response.json();
 		return data;
 	})
-	
-	iconElement.innerHTML = `<img src="icons/${weather.iconID}.png"/>`;
+		.then(function (data) {
+			weather.temperature.value = Math.floor(data.main.temp - kelvin);
+			weather.description = data.weather[0].description;
+			weather.iconId = data.weather[0].icon;
+			weather.city = data.name;
+			weather.country = data.sys.country;
+		})
+		.then(function () {
+			showWeather();
+		})		
+}
+		
+
+function showWeather() {
+	iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
 
 	tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
 
@@ -59,4 +72,7 @@ function cToF(temperature) {
 }
 // to celsius from kelvin
 weather.temperature.value = 300 - 273;
+
+
+//button code
 
