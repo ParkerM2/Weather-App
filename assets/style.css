@@ -23,5 +23,9 @@ header {
     height: 350px;
     border-radius: 50px;
     float: left;
+    margin: 10px;
 }
-
+#header {
+    align-content: center;
+    text-align: center;
+}
