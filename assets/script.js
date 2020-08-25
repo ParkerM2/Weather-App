@@ -23,14 +23,40 @@ const weather = {
 var settings = {
 	"async": true,
 	"crossDomain": true,
-	"url":  "https://community-open-weather-map.p.rapidapi.com/forecast?q=nashville%252Ctn",
+	"url":  "https://community-open-weather-map.p.rapidapi.com/forecast?q=Greenville%252CMS",
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-		"x-rapidapi-key": "98f849a757msh1ee7fc52fbeb99ep17651ajsn47a3e39c2bfd"
+		"x-rapidapi-key": "934d54abe6mshed43b676517e5d3p149740jsn92f8645e66e1"
 	}
 }
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
+
+
+// changing the text of the HTML function
+function showWeather(city, state) {
+	let api = `https://community-open-weather-map.p.rapidapi.com/forecast?q=${city}%252C${state}`
+	fetch(api).then(function (response) {
+		let data = response.json();
+		return data;
+	})
+	
+	iconElement.innerHTML = `<img src="icons/${weather.iconID}.png"/>`;
+
+	tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
+
+	descElement.innerHTML = weather.description;
+
+	locationElement = `${weather.city}, ${weather.country}`;
+}
+
+// temperature conversions
+function cToF(temperature) {
+	(temperature * 9 / 5) + 32;
+}
+// to celsius from kelvin
+weather.temperature.value = 300 - 273;
+
