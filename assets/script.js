@@ -7,19 +7,6 @@ $(document).ready(function () {
 	var dateOf = document.querySelector(".dateOf p")
 	var kelvin = 273;
 	
-	tempElement = Math.floor(tempElement);
-	// Creating Weather Object
-	// const weather = {
-	// 	temperature: {
-	// 		value: 18,
-	// 		unit: "celsius"
-	// 	},
-	// 	description: "few clouds",
-	// 	iconId: "01d",
-	// 	city: "London",
-	// 	country: "GB",
-	// };
-	// weather.temperature.value = 300 - 273;
 	function celsiusToFahrenheit(temperature) {
 		return (temperature * 9 / 5) + 32;
 	}
@@ -39,14 +26,14 @@ $(document).ready(function () {
 		}).then(function (response) {
 			var temp = response.list[0].main.temp
 			temp = Math.floor(temp * 9 / 5 - 459)
-
+		/// *** ASK BCS HOW TO SET THIS UP TO ADD THE NEXT CARDS for the FUTURE DATES IDK  HOW
 			$(".temperature").text(temp);
 			$(".temp-description").text(response.list[0].weather[0].description)
 			$(".city").text(response.city.name)
 			$(".dateOf").text(response.list[0].dt_txt)
 			celsiusToFahrenheit(response.list[0].main.temp)
 			console.log(response)
-
+	
 			console.log("this is the temp", temp)
 		}).then(function (data) {
 		
