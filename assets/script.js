@@ -38,7 +38,10 @@ $(document).ready(function () {
 			method: "GET"
 		}).then(function (response) {
 
-			$("#weatherCard").text(JSON.stringify(response.list[0].main.temp))
+			$(".temperature").text(JSON.stringify(response.list[0].main.temp + "°K"))
+			$(".temp-description").text(JSON.stringify(response.list[0].weather[0].description))
+			$(".city").text(response.city.name)
+
 			console.log(response)
 		}).then(function (data) {
 		
