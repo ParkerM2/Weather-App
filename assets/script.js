@@ -7,7 +7,7 @@ $(document).ready(function () {
 	var dateOf = document.querySelector(".dateOf p")
 	var kelvin = 273;
 	
-
+	tempElement = Math.floor(tempElement);
 	// Creating Weather Object
 	const weather = {
 		temperature: {
@@ -38,20 +38,19 @@ $(document).ready(function () {
 			method: "GET"
 		}).then(function (response) {
 
-			$(".temperature").text(JSON.stringify(response.list[0].main.temp + "°K"))
-			$(".temp-description").text(JSON.stringify(response.list[0].weather[0].description))
+			$(".temperature").text(response.list[0].main.temp * 9 / 5 - 459);
+			tempElement = Math.floor(tempElement);
+			$(".temp-description").text(response.list[0].weather[0].description)
 			$(".city").text(response.city.name)
+			$(".dateOf").text(response.list[0].dt_txt)
 
 			console.log(response)
 		}).then(function (data) {
 		
 			
-		
-
-		
-
 		})
-
+		
+		
 	})
 
 })
