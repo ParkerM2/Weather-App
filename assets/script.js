@@ -1,7 +1,7 @@
 // setting variables from html
 $(document).ready(function () {
 	var iconElement = document.querySelector(".card-img-top")
-	var tempElement = document.querySelector(".temperature p")
+	var tempElement = document.querySelector(".temperature")
 	var descElement = document.querySelector(".temperature-description p")
 	var locationElement = document.querySelector(".city-state p")
 	var dateOf = document.querySelector(".dateOf p")
@@ -19,7 +19,7 @@ $(document).ready(function () {
 		city: "London",
 		country: "GB",
 	};
-	weather.temperature.value = 300 - 273;	
+	weather.temperature.value = 300 - 273;
 	function celsiusToFahrenheit(temperature) {
 		return (temperature * 9 / 5) + 32;
 	}
@@ -27,6 +27,7 @@ $(document).ready(function () {
 	// This button will call the searched city through an AJAX Call to openweathermap.org
 
 	$("#button").on("click", function (event) {
+
 		event.preventDefault();
 	
 		var city = $("#city").val();
@@ -36,31 +37,18 @@ $(document).ready(function () {
 			url: queryURL,
 			method: "GET"
 		}).then(function (response) {
-			let data = JSON.stringify(response)
-		
+
+			$("#weatherCard").text(JSON.stringify(response.list[0].main.temp))
+			console.log(response)
 		}).then(function (data) {
-			// console.log(data)
-		}).then(function () {
-			showWeather();
-		})
-	
+		
+			
 		
 
-		function showWeather() {
-			// iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
+		
 
-			tempElement.innerHTML = data.list.main.temp.JSON.stringify + "°K";
-
-			descElement.innerHTML = weather.description;
-
-			locationElement = `${weather.city}`;
-		}
-
-
-
+		})
 
 	})
 
-});
-
-
+})
