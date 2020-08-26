@@ -1,39 +1,66 @@
 // setting variables from html
-var iconElement = document.querySelector(".card-img-top")
-var tempElement = document.querySelector(".temperature p") 
-var descElement = document.querySelector(".temperature-description p")
-var locationElement = document.querySelector(".city-state p")
-var dateOf = document.querySelector(".dateOf p")
+$(document).ready(function () {
+	var iconElement = document.querySelector(".card-img-top")
+	var tempElement = document.querySelector(".temperature p")
+	var descElement = document.querySelector(".temperature-description p")
+	var locationElement = document.querySelector(".city-state p")
+	var dateOf = document.querySelector(".dateOf p")
+	var kelvin = 273;
+	
+
+	// Creating Weather Object
+	const weather = {
+		temperature: {
+			value: 18,
+			unit: "celsius"
+		},
+		description: "few clouds",
+		iconId: "01d",
+		city: "London",
+		country: "GB",
+	};
+	weather.temperature.value = 300 - 273;	
+	function celsiusToFahrenheit(temperature) {
+		return (temperature * 9 / 5) + 32;
+	}
+
+	// This button will call the searched city through an AJAX Call to openweathermap.org
+
+	$("#button").on("click", function (event) {
+		event.preventDefault();
+	
+		var city = $("#city").val();
+		var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a";
+
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+		}).then(function (response) {
+			let data = JSON.stringify(response)
+		
+		}).then(function (data) {
+			// console.log(data)
+		}).then(function () {
+			showWeather();
+		})
+	
+		
+
+		function showWeather() {
+			// iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
+
+			tempElement.innerHTML = data.list.main.temp.JSON.stringify + "°K";
+
+			descElement.innerHTML = weather.description;
+
+			locationElement = `${weather.city}`;
+		}
 
 
-// Creating Weather Object
-// const weather = {
-// 	temperature: {
-// 		value: 18,
-// 		unit: "celsius"
-// 	},
-// 	description: "few clouds",
-// 	iconId: "01d",
-// 	city: "London",
-// 	country: "GB",
-// };
 
 
-// This button will call the searched city through an AJAX Call to openweathermap.org
-$("#button").on("click", function (event) {
-	event.preventDefault();
-	var city = document.querySelector("#city").val();
-	var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a"
-
-	$.ajax({
-		url: queryURL,
-		method: "GET"
-	}).then(function (response) {
-		console.log(response)
-		$(".weatherCard").text(JSON.stringify(response))
 	})
-})
 
-
+});
 
 
