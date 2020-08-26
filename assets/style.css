@@ -8,7 +8,9 @@ textarea {
     text-align: center;
 }
 
-
+#card{
+  float: left;
+}
 .card {
     width: 350px;
     height: 245px;
@@ -26,8 +28,8 @@ textarea {
 
 .container {
     text-align: center;
-    align-content: center;
-    position: relative;
+    /* align-content: center; */
+    /* position: relative; */
 
 }
 img {
