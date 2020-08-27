@@ -11,6 +11,10 @@ textarea {
 #card{
   float: left;
 }
+#weatherCard1 {
+  justify-content: center;
+  color: teal;
+}
 .card {
     width: 350px;
     height: 245px;
