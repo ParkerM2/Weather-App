@@ -9,22 +9,40 @@
     <title>Weather-Extravaganza</title>
 </head>
 <body>
-
-<div class="container-fluid content-center" id="header">
-<h1 class="display-4">Weather App</h1>
-<form action="input-form">
-<input name="city" id="city" cols="30" rows="1" placeholder="Enter City Name"></input>
-<button id="button" class="btn search-btn">Search City</button>
-<span id="error"></span>
-<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" name="previous-search" id="pastCity" cols="30" rows="1"></div>
-<div class="yoMom" id="btn" role="group" aria-label="First group" data-toggle="buttons">
-    <!-- <button type="button" class="btn btn-secondary">Previous Search</button>
-    <button type="button" class="btn btn-secondary">Previous Search</button>
-    <button type="button" class="btn btn-secondary">Previous Search</button>
-    <button type="button" class="btn btn-secondary">Previous Search</button> -->
+<!-- header -->
+<div class="row">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="div container">
+            <h1 class="display-4">Weather App</h1>
+        </div>
+    </div>
 </div>
-</form>
-
+    <!--store Weather information Here  -->
+    <div class="container">
+        <div class="form-group">
+            <h4>Search City:</h4>
+            
+                <input type="text" class="form-control" id="cityInput" placeholder="Enter City Name">
+                <button class="btn btn-primary" type="button" id="searchBtn">Search City</button>
+                    <button class="btn btn-secondary">Recent Search</button>
+                    <button class="btn btn-secondary">Recent Search</button>
+                    <button class="btn btn-secondary">Recent Search</button>
+                    <button class="btn btn-secondary">Recent Search</button>
+                </select>
+            
+        </div>
+        
+    </div>
+        <!-- Table of Previous Searches -->
+        <div class="list-group" id="cityList">
+        </div>
+    </div>
+        <!-- Weather Column -->
+        <div class="col-9">
+        <div class="card" style="width: 100%" id="weatherContainer"></div>
+            <div id="forecastContainer"></div>
+        </div>
+</div>
 </div>
 
 <div class="container" id="card">

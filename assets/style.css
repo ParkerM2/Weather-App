@@ -4,37 +4,17 @@ textarea {
     text-align: center;
 }
 .jumbotron {
-    /* align-content: center; */
-    text-align: center;
+    background-color: darkcyan;
+    color: black;
+    height: 4rem;
+    margin-bottom: 0px;
 }
-
-#card{
-  float: left;
-}
-#weatherCard1 {
-  justify-content: center;
-  color: teal;
-}
-.card {
-    width: 350px;
-    height: 245px;
-    border-radius: 50px, 50px;
-    float: left;
-    margin: 10px;
-    text-align: center;
-    padding: 50px;
-    
-}
-#header {
-    align-content: center;
-    text-align: center;
-}
-
 .container {
-    text-align: center;
-    /* align-content: center; */
-    /* position: relative; */
-
+    text-align: left;
+    position: relative;
+}
+#cityInput {
+  width: 30%;
 }
 img {
     height: 250px;
