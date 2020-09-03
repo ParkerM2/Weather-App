@@ -8,12 +8,12 @@ var cityArr = [];
 // storeCityArray();
 // bringCityArray();
 // displays city entered by the user
-var button = $("<button>");
-	var city = "austin"
-	var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ city +"&appid=aadef2e30a8efe5bb715019df5f2a42a";
-	var forecastResponse = $.ajax({
-		url: queryURL,
-		method: "GET"
+var button = $("#searchBtn");
+var city = $("#cityInput").val();
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a";
+var forecastResponse = $.ajax({
+	url: queryURL,
+	method: "GET",
 	});
 
 $(document).ready(function () {
@@ -48,6 +48,7 @@ $(document).ready(function () {
 
 	$("#searchBtn").on("click", function () {
 		event.preventDefault();
+
 		displayForecastWeather();
 		storeCityArray();
 		bringCityArray();
