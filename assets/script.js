@@ -8,27 +8,31 @@ var cityArr = [];
 // storeCityArray();
 // bringCityArray();
 // displays city entered by the user
-var button = $("<button>");
-	var city = "austin"
-	var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ city +"&appid=aadef2e30a8efe5bb715019df5f2a42a";
-	var forecastResponse = $.ajax({
-		url: queryURL,
-		method: "GET"
-	});
 
+var city = $(".cityInput").val();
+city = city.trim().toLowerCase();	
+var city = $(".cityInput").val();
+city = city.trim().toLowerCase();
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ city +"&appid=aadef2e30a8efe5bb715019df5f2a42a";
+ $.ajax({
+	url: queryURL,
+	method: "GET"
+	});
+console.log("queryURL", queryURL)
 $(document).ready(function () {
 	// function for displaying 5 day forecast 
 	function displayForecastWeather(response) {
 		// calling query url for forecast
 		queryURL;
 		// calling the forecast response from api
-		forecastResponse;	
-		console.log(forecastResponse)
+		
+	
+		console.log(response)
 		// 	//for loop to go through the list and tell it to print out the stats of that corresponding day into a new div
 		// for (i = 0; i < 40; i += 8) {
-		// 	var temp = response.list[i].main.temp;
+			var temp = response.list[i].main.temp;
 		// 	temp = Math.floor(temp * 9 / 5 - 459);
-		// 	console.log(temp);
+			console.log(temp);
 		// 	temp = temp + "°F";
 		
 
