@@ -10,53 +10,49 @@ var cityArr = [];
 
 
 $(document).ready(function () {
-var city = $("#cityInput").val();
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + "austin" + "&appid=aadef2e30a8efe5bb715019df5f2a42a";
-console.log(city.innerHTML)
-function showWeather() {
-	$("#mainWeather").addClass("w3-show");
-	$("#mainWeather").removeClass("w3-hide")
-	console.log($("#mainWeather").prop("classList"))
-  }
+// var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a";
+	function showWeather() {
+		$("#mainWeather").addClass("w3-show");
+		$("#mainWeather").removeClass("w3-hide")
+		console.log($("#mainWeather").prop("classList"))
+  	}
 	// function for displaying 5 day forecast 
 	function displayForecastWeather(e) {
 		// calling query url for forecast
+		var city = $("#cityInput").val();
+
+		queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a"
+
 		$.ajax({
 			url: queryURL,
 			method: "GET",
 		}).done(function (e) {
 			console.log(e)
-		})
-		// calling the forecast response from api
-		
-	
-	
-		// 	//for loop to go through the list and tell it to print out the stats of that corresponding day into a new div
-		// for (i = 0; i < 40; i += 8) {
-			// var temp = response.list[i].main.temp;
-		// 	temp = Math.floor(temp * 9 / 5 - 459);
-			// console.log(temp);
-		// 	temp = temp + "°F";
-		
+		;
+		//for loop to go through the list and tell it to print out the stats of that corresponding day into a new div
 
-		// 	var tempDescription = $("<p>").text("Daily Forecast : " + response.list[i].weather[0].description)
-		// 	// var tempImage = $("<img>").attr("src", response.list[0].weather[0].icon);
-		// 	var cityOf = $("<p1>").text("Weather Details For : " + response.city.name);
-		// 	var windSpeed = $("<p>").text("Wind Speed : " + response.list[i].wind.speed + "mph");
-		// 	var humidity = $("<p>").text("Humidity : " + response.list[i].main.humidity + " %");
-		// 	// date = $("<p>").text("Current Date : " + response.list[i].dt_txt);
-		// 	var div = $("<div class='container'>");
-		// 	div.append(cityOf, date, temp, humidity, windSpeed, tempDescription);
-		// 	$("#weatherContainer").append(div);
-		// 	}
-		}
-	
+		for (i = 0; i < 40; i += 8) {
+			var temp = e.list[i].main.temp;
+			temp = Math.floor(temp * 9 / 5 - 459);
+			console.log(temp);
+			temp = temp + "°F";
+			var tempDescription = $("<p>").text("Daily Forecast : " + e.list[i].weather[0].description)
+			var tempImage = $("<img>").attr("src", e.list[0].weather[0].icon);
+			var cityOf = $("<p1>").text("Weather Details For : " + e.city.name);
+			var windSpeed = $("<p>").text("Wind Speed : " + e.list[i].wind.speed + "mph");
+			var humidity = $("<p>").text("Humidity : " + e.list[i].main.humidity + " %");
+			var date =$("<p>").text("Current Date : " + e.list[i].dt_txt);
+			var div = $("<div class='container'>");
+			div.append(cityOf, date, temp, humidity, windSpeed, tempDescription);
+			$("#weatherContainer").append(div);
+			}})};
 	// This button will call the searched city through an AJAX Call to openweathermap.org
 
 	$("#searchBtn").on("click", function (e) {
 		event.preventDefault();
-		showWeather();
+		
 		displayForecastWeather(e);
+		showWeather();
 		// storeCityArray();
 		// bringCityArray();
 	})
@@ -83,4 +79,4 @@ function showWeather() {
 // 	}
 })
 			
-//response.list[0].main.temp * 9 / 5 - 459 ** for loop i = list.length ** run through i + (however many 3-4 to next day)
+//e.list[0].main.temp * 9 / 5 - 459 ** for loop i = list.length ** run through i + (however many 3-4 to next day)
