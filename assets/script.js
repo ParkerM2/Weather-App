@@ -8,6 +8,9 @@ var cityArr = [];
 // storeCityArray();
 // bringCityArray();
 // displays city entered by the user
+
+
+$(document).ready(function () {
 var button = $("#searchBtn");
 var city = $("#cityInput").val();
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=aadef2e30a8efe5bb715019df5f2a42a";
@@ -15,8 +18,6 @@ var forecastResponse = $.ajax({
 	url: queryURL,
 	method: "GET",
 	});
-
-$(document).ready(function () {
 	// function for displaying 5 day forecast 
 	function displayForecastWeather(response) {
 		// calling query url for forecast
@@ -63,6 +64,17 @@ $(document).ready(function () {
 	}
 
 
+// 	//Onclick function for showing weather
+// 	function showWeather() {
+// 		var x = $("#mainWeather").className;
+		
+//       	console.log(x)
+//   	if (x.indexOf("w3-show") == -1) { 
+//     	x += " w3-show";
+//   	} else {
+//     	x = x.replace("w3-show", "");
+//   }
+// 	}
 })
 			
 //response.list[0].main.temp * 9 / 5 - 459 ** for loop i = list.length ** run through i + (however many 3-4 to next day)
