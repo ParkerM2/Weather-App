@@ -1,29 +1,4 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
 
-textarea {
-    /* align-content: center; */
-    text-align: center;
-}
-.jumbotron {
-    background-color: darkcyan;
-    color: black;
-    height: 4rem;
-    margin-bottom: 0px;
-}
-.container {
-    text-align: left;
-    position: relative;
-}
-#cityInput {
-  width: 30%;
-}
-img {
-    height: 250px;
-    /* border-radius: 50px; */
-    width: 250px;
-    object-fit: cover;
-    
-}
-button {
-  padding: 10px;
-  margin-bottom: 20px;
-}
+
