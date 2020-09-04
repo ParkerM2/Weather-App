@@ -47,17 +47,26 @@ $(document).ready(function () {
      // City Text
     var citySpan = $('<h2 id="city" class="w3-text w3-jumbo">');
     $("#spanContainer").html(citySpan);
-
+// removes the w3.css framework class 'hide' so that all of the weather divs show on-click
     function showWeather() {
         $("#mainWeather").removeClass("w3-hide")
     }
+// storing the searched city in local.Storage
+    function storeCityArray() {
+        localStorage.name = $("#cityInput").val();
+    }
+
+    function bringCityArray() {
+    localStorage.getItem('name');
+    console.log(localStorage.name)
+}
     $("#searchBtn").on("click", function () {
             event.preventDefault();
             displayForecastWeather();
-            // createVariables();
+           
             showWeather();
-            // storeCityArray();
-            // bringCityArray();
+            storeCityArray();
+            bringCityArray();
     });
 
 });
