@@ -14,7 +14,6 @@ $(document).ready(function () {
 	function showWeather() {
 		$("#mainWeather").addClass("w3-show");
 		$("#mainWeather").removeClass("w3-hide")
-		console.log($("#mainWeather").prop("classList"))
   	}
 	// function for displaying 5 day forecast 
 	function displayForecastWeather(e) {
@@ -28,7 +27,17 @@ $(document).ready(function () {
 			method: "GET",
 		}).done(function (e) {
 			console.log(e)
-		;
+
+		let weatherResponse = [];
+		for (i=0; i < e.list[.lenth]; i=i+8) {
+			var list = e.list[i].main.temp
+			weatherResponse.push(list)
+			weatherResponse.push(e.city.name)
+			console.log(list)
+		}
+		console.log(weatherResponse.name);
+		weatherResponse.name
+
 		//for loop to go through the list and tell it to print out the stats of that corresponding day into a new div
 
 		for (i = 0; i < 40; i += 8) {
@@ -36,6 +45,7 @@ $(document).ready(function () {
 			temp = Math.floor(temp * 9 / 5 - 459);
 			console.log(temp);
 			temp = temp + "°F";
+			// $("#temp31").html( '<span id="temp31" class="w3-large">Temperature :'+ temp.join("</span>"))
 			var tempDescription = $("<p>").text("Daily Forecast : " + e.list[i].weather[0].description)
 			var tempImage = $("<img>").attr("src", e.list[0].weather[0].icon);
 			var cityOf = $("<p1>").text("Weather Details For : " + e.city.name);
@@ -44,18 +54,17 @@ $(document).ready(function () {
 			var date =$("<p>").text("Current Date : " + e.list[i].dt_txt);
 			var div = $("<div class='container'>");
 			div.append(cityOf, date, temp, humidity, windSpeed, tempDescription);
-			$("#weatherContainer").append(div);
+			$("#contentContainer")
 			}})};
-	// This button will call the searched city through an AJAX Call to openweathermap.org
-
-	$("#searchBtn").on("click", function (e) {
-		event.preventDefault();
+		// This button will call the searched city through an AJAX Call to openweathermap.org
+		$("#searchBtn").on("click", function (e) {
+			event.preventDefault();
 		
-		displayForecastWeather(e);
-		showWeather();
-		// storeCityArray();
-		// bringCityArray();
-	})
+			displayForecastWeather(e);
+			showWeather();
+		// 	storeCityArray();
+		// 	bringCityArray();
+		})
 	// this function will store the searched cities into an Array
 	// function storeCityArray() {
 	// 	localStorage.setItem("city",JSON.stringify(cityArr))
@@ -65,18 +74,8 @@ $(document).ready(function () {
 	// 	storedCity = JSON.parse(localStorage.getItem("city"));
 	// }
 
+// storing response items in an array
+// each array should have values 1-5 for each day of the forecast
 
-// 	//Onclick function for showing weather
-// 	function showWeather() {
-// 		var x = $("#mainWeather").className;
-		
-//       	console.log(x)
-//   	if (x.indexOf("w3-show") == -1) { 
-//     	x += " w3-show";
-//   	} else {
-//     	x = x.replace("w3-show", "");
-//   }
-// 	}
 })
-			
 //e.list[0].main.temp * 9 / 5 - 459 ** for loop i = list.length ** run through i + (however many 3-4 to next day)
