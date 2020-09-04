@@ -12,7 +12,13 @@ $(document).ready(function () {
     var day3 = [];
     var day4 = [];
     var day5 = [];
+    function grabLocalData () {
+        console.log(day1)
 
+        day1.push(localStorage.day01)
+        var day01 = localStorage.getItem('day1')
+        console.log(day01);
+    }
     // function for displaying 5 day forecast
     function displayForecastWeather(e) {
         event.preventDefault();
@@ -30,8 +36,8 @@ $(document).ready(function () {
             // setting variable for each day of the 5 day forecast
                 let list = response.list[i];
                 listDay.push(list);
-            // setup local.storage here in future?
             }
+         
         // parsing all of the data for each day to a corresponding array
             dayParse();
         })
@@ -43,6 +49,7 @@ $(document).ready(function () {
             day4.push(listDay[3])
             day5.push(listDay[4])
         };
+    
     }; 
      // City Text
     var citySpan = $('<h2 id="city" class="w3-text w3-jumbo">');
@@ -54,19 +61,22 @@ $(document).ready(function () {
 // storing the searched city in local.Storage
     function storeCityArray() {
         localStorage.name = $("#cityInput").val();
+        cityArr.push(localStorage.name)
     }
-
+// grabbing the searched city from local.Storage
     function bringCityArray() {
     localStorage.getItem('name');
     console.log(localStorage.name)
 }
+// onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
             event.preventDefault();
             displayForecastWeather();
-           
             showWeather();
             storeCityArray();
             bringCityArray();
+            grabLocalData();
     });
-
+// pushing data from day1-5Arr into the StoredData Obj in LocalStorage
+  
 });
