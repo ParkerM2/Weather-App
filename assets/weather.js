@@ -12,13 +12,13 @@ $(document).ready(function () {
     var day3 = [];
     var day4 = [];
     var day5 = [];
-    function grabLocalData () {
-        console.log(day1)
+   function storeEachDay() {
+    console.log(day1,"day1")
+     localStorage.day1Temp = day1[0].main.temp
+     var day1Temp = localStorage.getItem('day1Temp')
+     console.log(JSON.stringify(day1Temp))
+   }
 
-        day1.push(localStorage.day01)
-        var day01 = localStorage.getItem('day1')
-        console.log(day01);
-    }
     // function for displaying 5 day forecast
     function displayForecastWeather(e) {
         event.preventDefault();
@@ -48,6 +48,7 @@ $(document).ready(function () {
             day3.push(listDay[2])
             day4.push(listDay[3])
             day5.push(listDay[4])
+            storeEachDay();
         };
     
     }; 
@@ -68,6 +69,8 @@ $(document).ready(function () {
     localStorage.getItem('name');
     console.log(localStorage.name)
 }
+
+
 // onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
             event.preventDefault();
@@ -75,8 +78,10 @@ $(document).ready(function () {
             showWeather();
             storeCityArray();
             bringCityArray();
-            grabLocalData();
+            
+            
     });
+    
 // pushing data from day1-5Arr into the StoredData Obj in LocalStorage
   
 });
