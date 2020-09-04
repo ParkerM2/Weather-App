@@ -12,11 +12,17 @@ $(document).ready(function () {
     var day3 = [];
     var day4 = [];
     var day5 = [];
+// stores each's days corresponding data in local storage
    function storeEachDay() {
-    console.log(day1,"day1")
-     localStorage.day1Temp = day1[0].main.temp
-     var day1Temp = localStorage.getItem('day1Temp')
-     console.log(JSON.stringify(day1Temp))
+    console.log(day1,"day1");
+    localStorage.day1Temp = day1[0].main.temp;
+    localStorage.day1Date = day1[0].dt_txt;
+    localStorage.day1Humidity = day1[0].main.humidity;
+    localStorage.day1Weather = day1[0].weather[0].description;
+    localStorage.day1Icon = day1[0].weather[0].icon;
+    
+
+    
    }
 
     // function for displaying 5 day forecast
