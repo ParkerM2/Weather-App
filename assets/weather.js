@@ -17,7 +17,12 @@ $(document).ready(function () {
 // function for displaying 5 day forecast
     function displayForecastWeather(e) {
         event.preventDefault();
+        if (localStorage.city.length === 0){
         var city = $("#cityInput").val();
+        }else{
+        var city = localStorage.getItem('city');
+        };
+// check this if statement again**
         response = {
             url: queryURL,
             method: "GET",
@@ -62,29 +67,28 @@ $(document).ready(function () {
     function bringCityArray() {
         var city = localStorage.getItem('city');
         storedData.city.push(city);
-        console.log(storedData.city)
+        console.log(city)
         
-// capitalizing the first letter so that the new buttons look nice
-// for loop to run through the saved city names and display new buttons
-        for (i = 0; i > storedData.city.length; i++) {
-            var newBtn = $('<button id="searchBtn' + i + '"class="w3-bar-item w3-button w3-hover-black"style="width:100%"/>');
-            $('#searchBtn' + i).text(storedData.city[i]);
-            $("#searchBtn").append(newBtn)
-            console.log("for loop", newBtn)
-           // need to figure this out, askBCS
+    }
+    newBtn()
+// creating new buttons
+    function newBtn() {
+        var btnDiv = $("#searchBtn1").removeClass("w3-hide");
+        for (i=0; i < storedData.city.length; i++)
+        btnDiv.text("")
+        btnDiv.html(localStorage.getItem('city'))
+        
 
-            
-        }
     }
 // original search button
     $("#searchBtn1").on('click', function () {
-        const city = storedData.city[0]
-        storeCityArray();
-        displayForecastWeather(city);
-        showWeather();
         bringCityArray();
+        storeCityArray();
+        displayForecastWeather();
+        showWeather();
+        
+        console.log("inside onclick btn1",city)
     })
-    bringCityArray();
 
 
 
