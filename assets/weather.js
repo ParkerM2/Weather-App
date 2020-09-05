@@ -1,6 +1,10 @@
 $(document).ready(function () {
+    var city;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=aadef2e30a8efe5bb715019df5f2a42a"
 // storage containers for local.storage
-    let storedData = {};
+    let storedData = {
+        city:[]
+    };
     let cityArr = [];
 // storage for the weather api response
 //listDay is the original 5 days data :: 1-5 are each separate day's data
@@ -13,8 +17,7 @@ $(document).ready(function () {
 // function for displaying 5 day forecast
     function displayForecastWeather(e) {
         event.preventDefault();
-        let city = $("#cityInput").val();
-        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=aadef2e30a8efe5bb715019df5f2a42a"
+        var city = $("#cityInput").val();
         response = {
             url: queryURL,
             method: "GET",
@@ -50,39 +53,50 @@ $(document).ready(function () {
     };
 // storing the searched city in local.Storage
     function storeCityArray() {
-        localStorage.name = $("#cityInput").val();
-        cityArr.push(localStorage.name)
-    };
+        let cityName = $("#cityInput").val();
+        localStorage.setItem('city', cityName);
+    }
+       
+
 // grabbing the searched city from local.Storage
     function bringCityArray() {
-    localStorage.getItem('name');
-    
-    const name = localStorage.name;
-    for (i = 0; i < cityArr.length; i++){
+        var city = localStorage.getItem('city');
+        storedData.city.push(city);
+        console.log(storedData.city)
+        
+// capitalizing the first letter so that the new buttons look nice
+// for loop to run through the saved city names and display new buttons
+        for (i = 0; i > storedData.city.length; i++) {
+            var newBtn = $('<button id="searchBtn' + i + '"class="w3-bar-item w3-button w3-hover-black"style="width:100%"/>');
+            $('#searchBtn' + i).text(storedData.city[i]);
+            $("#searchBtn").append(newBtn)
+            console.log("for loop", newBtn)
+           // need to figure this out, askBCS
 
-        //needs if statement to not push the same name
-        var newbtn = $('<button id="newCityBtn"class="w3-button w3-white w3-border">')
-        $("#btnDiv").append(newbtn)
-        $('#newCityBtn').text(name)
-        
-        
-        console.log("in for loop", name)
-        console.log("in for loop",newbtn);
+            
+        }
     }
-//creating new button for searched name
+// original search button
+    $("#searchBtn1").on('click', function () {
+        const city = storedData.city[0]
+        storeCityArray();
+        displayForecastWeather(city);
+        showWeather();
+        bringCityArray();
+    })
+    bringCityArray();
 
-
-};
 
 
 // onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
-            event.preventDefault();
-            displayForecastWeather();
-            showWeather();
-            storeCityArray();
-            bringCityArray();
+        event.preventDefault();
+        // previousSearch();
+        storeCityArray();
+        displayForecastWeather();
+        showWeather();
+        bringCityArray();
     });
-    
+
 // pushing data from day1-5Arr into the StoredData Obj in LocalStorage
 });
