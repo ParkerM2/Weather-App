@@ -7,6 +7,12 @@ $(document).ready(function () {
     };
     let cityArr = [];
 // storage for the weather api response
+    // if (cityArr === 0) {
+    //     var city = $("#cityInput").val();
+    // } else {
+    //     var city = localStorage.getItem('city')
+    // }
+    
 //listDay is the original 5 days data :: 1-5 are each separate day's data
     var listDay = [];
     var day1 = [];
@@ -15,9 +21,9 @@ $(document).ready(function () {
     var day4 = [];
     var day5 = [];
 // function for displaying 5 day forecast
-    function displayForecastWeather(e) {
+    function displayForecastWeather() {
         event.preventDefault();
-        var city = $("#cityInput").val();
+        
         response = {
             url: queryURL,
             method: "GET",
@@ -78,19 +84,21 @@ $(document).ready(function () {
     }
 // original search button
     $("#searchBtn1").on('click', function () {
-        const city = storedData.city[0]
+        event.preventDefault();
+        var city = $("#cityInput").val();
         storeCityArray();
         displayForecastWeather(city);
         showWeather();
         bringCityArray();
     })
-    bringCityArray();
+    
 
 
 
 // onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
         event.preventDefault();
+        var city = localStorage.getItem('city')
         // previousSearch();
         storeCityArray();
         displayForecastWeather();
