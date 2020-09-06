@@ -1,6 +1,19 @@
 $(document).ready(function () {
-    var city;
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=aadef2e30a8efe5bb715019df5f2a42a"
+function declareCity(city) {
+    
+    var cityLength = 0;
+    cityLength = localStorage.city.length 
+    if (cityLength === 0){
+        var city = $("#cityInput").val();
+        return city;
+        }else{
+        var city = localStorage.getItem('city');
+        return city;
+        };
+}
+    declareCity(city);
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=21fbf76c114d375ae6d63681a9744c5a"
 // storage containers for local.storage
     let storedData = {
         city:[]
@@ -23,7 +36,7 @@ $(document).ready(function () {
 // function for displaying 5 day forecast
     function displayForecastWeather() {
         event.preventDefault();
-        
+// check this if statement again**
         response = {
             url: queryURL,
             method: "GET",
@@ -68,30 +81,28 @@ $(document).ready(function () {
     function bringCityArray() {
         var city = localStorage.getItem('city');
         storedData.city.push(city);
-        console.log(storedData.city)
+        console.log(city)
         
-// capitalizing the first letter so that the new buttons look nice
-// for loop to run through the saved city names and display new buttons
-        for (i = 0; i > storedData.city.length; i++) {
-            var newBtn = $('<button id="searchBtn' + i + '"class="w3-bar-item w3-button w3-hover-black"style="width:100%"/>');
-            $('#searchBtn' + i).text(storedData.city[i]);
-            $("#searchBtn").append(newBtn)
-            console.log("for loop", newBtn)
-           // need to figure this out, askBCS
+    }
+    newBtn()
+// creating new buttons
+    function newBtn() {
+        var btnDiv = $("#searchBtn1").removeClass("w3-hide");
+        for (i=0; i < storedData.city.length; i++)
+        btnDiv.text("")
+        btnDiv.html(localStorage.getItem('city'))
+        
 
-            
-        }
     }
 // original search button
     $("#searchBtn1").on('click', function () {
-        event.preventDefault();
-        var city = $("#cityInput").val();
-        storeCityArray();
-        displayForecastWeather(city);
-        showWeather();
         bringCityArray();
+        storeCityArray();
+        displayForecastWeather();
+        showWeather();
+        
+        console.log("inside onclick btn1",city)
     })
-    
 
 
 
