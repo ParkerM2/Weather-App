@@ -1,6 +1,19 @@
 $(document).ready(function () {
-    var city;
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=aadef2e30a8efe5bb715019df5f2a42a"
+function declareCity(city) {
+    
+    var citylength = 0;
+    citylength = localStorage.city.length 
+    if (citylength === 0){
+        var city = $("#cityInput").val();
+        return city;
+        }else{
+        var city = localStorage.getItem('city');
+        return city;
+        };
+}
+    declareCity(city);
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=21fbf76c114d375ae6d63681a9744c5a"
 // storage containers for local.storage
     let storedData = {
         city:[]
@@ -17,11 +30,6 @@ $(document).ready(function () {
 // function for displaying 5 day forecast
     function displayForecastWeather(e) {
         event.preventDefault();
-        if (localStorage.city.length === 0){
-        var city = $("#cityInput").val();
-        }else{
-        var city = localStorage.getItem('city');
-        };
 // check this if statement again**
         response = {
             url: queryURL,
