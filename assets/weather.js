@@ -97,6 +97,7 @@ $(document).ready(function () {
         showWeather();
         bringCityArray();
         console.log(city, " first ")
+        showMainDay(day1);
     });
 
 
@@ -106,5 +107,19 @@ $(document).ready(function () {
         bringCityArray();
         displayForecastWeather();
         showWeather();
-    })   
+        console.log(day1)
+        showMainDay(day1);
+
+    }) 
+// function for displaying data from api response onto the page
+    function showMainDay() {
+        console.log(day1[0])
+        $("#date1").html(day1[0].dt_txt);
+        
+        $("#spanContainer").text("Feels like: " + day1[0].main.feels_like + " Temp: " + day1[0].main.temp);
+        $("#wind1").text(day1[0].wind.speed + " mph");
+        $("#desc1").text(day1[0].weather.description);
+        $("#uv1").text();
+        $("#uvImg1").text();
+    }
 });
