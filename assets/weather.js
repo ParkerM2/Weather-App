@@ -14,13 +14,13 @@ $(document).ready(function () {
     var day5 = [];
 
 
-    // function for displaying 5 day forecast
-    function displayForecastWeather(city,queryURL) {
+// function for displaying 5 day forecast
+    function displayForecastWeather() {
         event.preventDefault();
         if (storedData.city.length === 0) {
             var city = $("#cityInput").val();
             storeCityArray();
-        } else { 
+        } else {
             var city = localStorage.getItem('city')
             console.log('in if statement', city)
         }
@@ -32,17 +32,16 @@ $(document).ready(function () {
         $.ajax(response).done(function (response) {
             let city = response.city.name;
             $("#city").html(city);
- // for loop for grabbing the next day in the array of timestamps 
+            // for loop for grabbing the next day in the array of timestamps 
             for (i = 0; i < 40; i = i + 8) {
-// setting variable for each day of the 5 day forecast
+                // setting variable for each day of the 5 day forecast
                 let list = response.list[i];
                 listDay.push(list);
             };
-// parsing all of the data for each day to a corresponding array
+            // parsing all of the data for each day to a corresponding array
             dayParse();
-        });
-}
-
+        })
+    }
 
 // function to grab each day's data and store it in its own array for easy grabbing
     function dayParse() {
@@ -74,10 +73,10 @@ $(document).ready(function () {
 
 // grabbing the searched city from local.Storage
     function bringCityArray() {
-        var city = localStorage.getItem('city');
-        storedData.city.push(city);
+        var city1 = localStorage.getItem('city');
+        storedData.city.push(city1);
     }
-    newBtn()
+    
 
 
 // creating new buttons
@@ -86,18 +85,29 @@ $(document).ready(function () {
         btnDiv.text("")
         btnDiv.html(localStorage.getItem('city'))
     }
+    newBtn();
+
+// function for displaying data from api response onto the page
+    function showMainDay() {
+        $("#date1").html(day1[0].dt_txt);
+        console.log(day1[0].main.feels_like)
+        $("#spanContainer").text("Feels like: " + day1[0].main.feels_like + " Temp: " + day1[0].main.temp);
+        $("#wind1").text(day1[0].wind.speed + " mph");
+        $("#desc1").text(day1[0].weather.description);
+        $("#uv1").text();
+        $("#uvImg1").text();
+    }
 
 
 // onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
         event.preventDefault();
-        // var city = localStorage.getItem('city');
+        bringCityArray();
         storeCityArray();
         displayForecastWeather();
         showWeather();
-        bringCityArray();
-        console.log(city, " first ")
-        showMainDay(day1);
+        console.log(day1, "main search BTN ")
+        showMainDay();
     });
 
 
@@ -105,21 +115,12 @@ $(document).ready(function () {
     $("#searchBtn1").on('click', function () {
         event.preventDefault();
         bringCityArray();
+        storeCityArray();
         displayForecastWeather();
         showWeather();
-        console.log(day1)
-        showMainDay(day1);
+        console.log(day1, "searchBtn1")
+        showMainDay();
 
     }) 
-// function for displaying data from api response onto the page
-    function showMainDay() {
-        console.log(day1[0])
-        $("#date1").html(day1[0].dt_txt);
-        
-        $("#spanContainer").text("Feels like: " + day1[0].main.feels_like + " Temp: " + day1[0].main.temp);
-        $("#wind1").text(day1[0].wind.speed + " mph");
-        $("#desc1").text(day1[0].weather.description);
-        $("#uv1").text();
-        $("#uvImg1").text();
-    }
+
 });
