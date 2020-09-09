@@ -6,70 +6,75 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <link rel="stylesheet" href="./assets/style.css">
-    <style> h4{font-size: 84px;}</style>
+    <!-- <style> h4{font-size: 35px;} h3{font-size: 100px}</style> -->
 </head>
 <body>
 <!-- Header-->
-<div class="w3-top">
-  <div class="w3-white w3-xlarge w3-padding" style="max-width:100%;margin:auto">
-        <div class="w3-center w3-padding-16">Xtreme Weather</div>
+<div id="header" class="w3-top">
+  <div class="w3-xlarge w3-padding" style="max-width:100%;margin:auto; border: 2px solid gray">
+        <div class="w3-center w3-padding-16" style="font-size: 40px"><b>Xtreme Weather</b></div>
     </div>
 </div>
 <!-- content -->
 
 <div class="w3-padding" style="margin-top:75px">
    <form class="w3-padding">
-        <h3 class="w3-left-align">5 Day Forecast</h3>
-        <input id="cityInput" class="w3-input w3-animate-input" style="width:28%%" type="text" placeholder="Enter City Search Here"></input>
-        <button id="searchBtn"  class="w3-bar-item w3-button w3-hover-black w3-quarter  w3-show"style="width:30%">Search</button>
-        <button id="searchBtn1"  class="w3-bar-item w3-button w3-hover-black w3-quarter w3-hide"style="width:30%">test</button>
+        <h2 class="w3-left-align" style="font-size: 65px; margin-top: 25px;">5 Day Forecast</h2>
+        <input id="cityInput" class="w3-input w3-animate-input" style="width:28%; height: 50px;" type="text" placeholder="Enter City Search Here"></input>
+        <button id="searchBtn"  class="w3-bar-item w3-button w3-padding-16 w3-hover-black w3-quarter  w3-show"style="width:30%; font-size:25px; color: black; border: 2px solid black; background-color: white;">Search</button>
+        <button id="searchBtn1"  class="w3-bar-item w3-button w3-padding-16 w3-hover-black w3-quarter w3-hide"style="width:30%; font-size:25px; color: black; border: 2px solid black;  background-color: white;">test</button>
     </form>
 </div>
 <div class="w3-hide" id="mainWeather">
 <!-- <div class="w3-container"> -->
-    <div class="w3-display w3-row w3-padding">
+    <div class="w3-display-container w3-center w3-row w3-padding">
    <!-- Todays Weather -->
         <ul class="w3-ul w3-padding w3-third">
         <div class="w3-card-4">
             <div class="w3-display-container">
-            <img id="weatherImg" src="./assets/cloud.jpg" class="w3-image" alt="Weather Related Img" style="width: 100%">
-            <h1 id="cityName0"class="w3-display-topmiddle w3-xxlarge"  style="color: white;" ></h1>
-            <h1 id="cityTemp0"class="w3-display-middle"  style="color: white;"></h1>
-            </div>
+            <div id="img0"></div>
+            <span id="cityName0"class="w3-display-topmiddle w3-jumbo"  style="color: white;" ></span>
+            <h3 id="cityTemp0"class="w3-display-bottommiddle"  style="color: white;"></h3>
         </div>
-            <li class="w3-bar-item">
-                
-                <div id="spanContainer" class="w3-bar-item w3-li">
-                <!-- city shows here -->
-                </div>
+        </ul>
+        <ul class="w3-ul w3-padding w3-third">
+            <li class="w3-bar-item w3-li">
             </li>
             <li class="w3-bar-item w3-li">
                 <div class="w3-bar-item">
-                    <h2 id="date0" class="w3-large"> Date : </h2>
+                    <h2 id="date0" class="w3-xlarge"> Date : </h2>
                     
                 </div>
             </li>
             <li class="w3-bar-item w3-li">
                 <div  class="w3-bar-item">
-                    <span id="wind0" class="w3-large">Wind Speed : </span>
+                    <span id="wind0" class="w3-xlarge">Wind Speed : </span>
                 </div>
             </li>
             <li class="w3-bar-item w3-li">
                 <div  class="w3-bar-item">
-                    <span id="windDirection0" class="w3-large">Wind Speed : </span>
+                    <span id="windDirection0" class="w3-xlarge">Wind Speed : </span>
                 </div>
             </li>
             <li class="w3-bar-item">
-                  <div class="w3-bar-item">
-                    <span id="desc0" class="w3-large">Weather Description : </span>
-            </li>
-            <li class="w3-bar">
-                  <div class="w3-bar-item">
-                    <span id="uv" class="w3-large">Uv Index : </span>
-                    <img id="uvImg0" src="" alt="uv Index Picture">
+                <div class="w3-bar-item">
+                    <span id="desc0" class="w3-xlarge">Weather Description : </span>
                 </div>
             </li>
+            <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                    <span id="humid0" class="w3-xlarge">Humidity : </span>
+                </div>
+            </li>
+            <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                <h2 id="uvDesc">Uv Index : </h2>
+                <img id="uv" src="./assets/uvImg.jpg" class="w3-circle" style="width: 10%;" alt="uv Index Picture">
+                </div>
+            </li>
+           
         </ul>
+        
     </div>
 
 
@@ -77,21 +82,16 @@
 <!-- Todays Weather -->
     <div id="mainWeather" class="w3-quarter w3-padding">
          <ul class="w3-ul w3-padding">
-            <div class="w3-display-container">
-            <img id="weatherImg" src="./assets/cloud.jpg" class="w3-image" alt="Weather Related Img" style="width: 100%%;">
-            <h1 id="cityName1"class="w3-display-topmiddle"  style="color: white;" ></h1>
-            <h1 id="cityTemp1"class="w3-display-middle"  style="color: white;"></h1>
+            <div class="w3-card-4">
+            <div id="img1" class="w3-display-container">
+            <!-- <img id="weatherImg1"  class="w3-image" alt="Weather Related Img" style="width: 100%;"> -->
+            <span id="cityName1"class="w3-display-topmiddle w3-jumbo"  style="color: white;" ></span>
+            <h3 id="cityTemp1"class="w3-display-middle"  style="color: white;"></h3>
+           
             </div>
-            <li class="w3-bar-item w3-container">
-                
-                <div id="spanContainer" class="w3-bar-item w3-li w3-container">
-                <!-- city shows here -->
-                </div>
-            </li>
             <li class="w3-bar-item w3-container">
                 <div id="temp" class="w3-bar-item">
                     <span id="date1"class="w3-large"> Date : </span>
-                    
                 </div>
             </li>
             <li class="w3-bar-item">
@@ -105,26 +105,31 @@
                 </div>
             </li>
             <li class="w3-bar-item">
-                  <div class="w3-bar-item">
+                <div class="w3-bar-item">
                     <span id="desc1"class="w3-large">Weather Description : </span>
                 </div>
             </li>
+             <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                    <span id="humid1" class="w3-large">Humidity : </span>
+                </div>
+            </li>
+            </div>
         </ul>
+       
     </div>
 
 <!-- Todays Weather -->
         <div id="mainWeather" class="w3-quarter w3-padding">
          <ul class="w3-ul w3-padding">
-            <div class="w3-display-container">
-            <img id="weatherImg" src="./assets/cloud.jpg" class="w3-image" alt="Weather Related Img" style="width: 100%%;">
-            <h1 id="cityName2"class="w3-display-topmiddle w3-xxlarge"  style="color: white;" ></h1>
-            <h1 id="cityTemp2"class="w3-display-middle"  style="color: white;"></h1>
+         <div class="w3-card-4">
+            <div id="img2" class="w3-display-container">
+            <!-- <img id="weatherImg2"  class="w3-image" alt="Weather Related Img" style="width: 100%;"> -->
+            <span id="cityName2"class="w3-display-topmiddle w3-jumbo"  style="color: white;" ></span>
             </div>
+         
+        
             <li class="w3-bar-item">
-                
-                <div id="spanContainer" class="w3-bar-item w3-li">
-                <!-- city shows here -->
-                </div>
             </li>
             <li class="w3-bar-item">
                 <div class="w3-bar-item">
@@ -147,21 +152,25 @@
                     <span id="desc2"class="w3-large">Weather Description : </span>
                 </div>
             </li>
+             <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                    <span id="humid2" class="w3-large">Humidity : </span>
+                </div>
+            </li>
         </ul>
     </div>
+    
 <!-- Next Days Card -->
         <div id="mainWeather" class=" w3-quarter w3-padding">
          <ul class="w3-ul w3-padding">
-            <div class="w3-display-container">
-            <img id="weatherImg" src="./assets/cloud.jpg" class="w3-image" alt="Weather Related Img" style="width: 100%%;">
-            <h1 id="cityName3"class="w3-display-topmiddle w3-xxlarge"  style="color: white;" ></h1>
-            <h1 id="cityTemp3"class="w3-display-middle"  style="color: white;"></h1>
+         <div class="w3-card-4">
+            <div id="img3" class="w3-display-container">
+            <!-- <img id="weatherImg3" class="w3-image" alt="Weather Related Img" style="width: 100%;"> -->
+            <span id="cityName3"class="w3-display-topmiddle w3-jumbo"  style="color: white;" ></span>
+            <h3 id="cityTemp3"class="w3-display-middle"  style="color: white;"></h3>
             </div>
+        
             <li class="w3-bar-item">
-                
-                <div id="spanContainer" class="w3-bar-item w3-li">
-                <!-- city shows here -->
-                </div>
             </li>
             <li class="w3-bar-item">
                 <div class="w3-bar-item">
@@ -184,20 +193,29 @@
                     <span id="desc3"class="w3-large">Weather Description : </span>
                 </div>
             </li>
+             <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                    <span id="humid3" class="w3-large">Humidity : </span>
+                </div>
+            </li>
         </ul>
     </div>
+    
 <!-- Next Day's Card -->
          <div id="mainWeather" class=" w3-quarter w3-padding">
          <ul class="w3-ul w3-padding">
-            <div class="w3-display-container">
-            <img id="weatherImg" src="./assets/cloud.jpg" class="w3-image" alt="Weather Related Img" style="width: 100%%;">
-            <h1 id="cityName4"class="w3-display-topmiddle"  style="color: white;"></dh1>
+         <div class="w3-card-4">
+            <div id="img4" class="w3-display-container">
+            <!-- <img id="weatherImg4"  class="w3-image" alt="Weather Related Img" style="width: 100%;"> -->
+            <span id="cityName4"class="w3-display-topmiddle w3-jumbo"  style="color: white;"></span>
             <h1 id="cityTemp4"class="w3-display-middle"  style="color: white;"></h1>
             </div>
+        
+             <li class="w3-bar-item">
+            </li>
             <li class="w3-bar-item">
                 <div class="w3-bar-item">
-                    <span id="date4"class="w3-large"> Date : </span>
-                    
+                    <span id="date4"class="w3-large"> Date : </span>  
                 </div>
             </li>
             <li class="w3-bar-item">
@@ -211,18 +229,23 @@
                 </div>
             </li>
             <li class="w3-bar-item">
-                  <div class="w3-bar-item">
+                <div class="w3-bar-item">
                     <span id="desc4"class="w3-large">Weather Description : </span>
+                </div>
+            </li>
+             <li class="w3-bar-item">
+                <div class="w3-bar-item">
+                    <span id="humid4" class="w3-large">Humidity : </span>
                 </div>
             </li>
         </ul>
     </div>
-
+    </div>
       
         
 </div>
 
-</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <script src="./assets/weather.js"></script>
 </body>

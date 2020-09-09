@@ -1,6 +1,21 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
-html {overflow-x: visible;}
-#cityTemp {
-    font-size: xx-large;
+html {
+    overflow-x: visible;
+}
+#header {
+    background-color: rgb(118, 165, 180);
+}
+
+.low {
+    background-color: lime;
+}
+.moderate {
+    background-color: yellow;
+}
+.high {
+    background-color: orangered;
+}
+.vHigh {
+    background-color: red;
 }

@@ -3,6 +3,7 @@ $(document).ready(function () {
     let storedData = {
         city: []
     };
+// fontawesome api C5BDC5D4-452B-4DF1-A3B8-423EF1F8363E
 
     //listDay is the original 5 days data :: 1-5 are each separate day's data
     var listDay = [];
@@ -43,15 +44,17 @@ $(document).ready(function () {
                 return "N"; 
             }
 }
+// city list
+    function storeCity() {
+        let city = $("#cityInput").val();
+        localStorage.setItem('city', city);
+    }
 
+    
     // function for displaying 5 day forecast
-    function displayForecastWeather() {
+    function displayForecastWeather(city) {
         event.preventDefault();
-        if (storedData.city.length === 0) {
-            var city = $("#cityInput").val();
-        } else {
-            var city = localStorage.getItem('city')
-        }
+        
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=21fbf76c114d375ae6d63681a9744c5a";
         response = {
             url: queryURL,
@@ -65,12 +68,13 @@ $(document).ready(function () {
             var lat = response.city.coord.lat
             uvCall(lat, lon);
             
-        
+            listDay.shift();
             // for loop for grabbing the next day in the array of timestamps 
             for (i = 0; i < 40; i = i + 8) {
 
                 // setting variable for each day of the 5 day forecast
                 let list = response.list[i];
+                
                 listDay.push(list);
             };
         
@@ -84,9 +88,9 @@ $(document).ready(function () {
                 var deg = listDay[i].wind.deg;
 
                 let city = $("#cityName" + i);
-                city.text(response.city.name);
-                let cityTemp = $("#cityTemp" + i);
-                cityTemp.text(listDay[i].main.temp + " °F")
+                city.text(response.city.name + " " + listDay[i].main.temp + " °F");
+                // let cityTemp = $("#cityTemp" + i);
+                // cityTemp.text(listDay[i].main.temp + " °F")
                 let cityDate = $("#date" + i);
                 cityDate.text("Date : " + listDay[i].dt_txt);
                 let wind = $("#wind" + i);
@@ -94,8 +98,15 @@ $(document).ready(function () {
                 let windDirection = $("#windDirection" + i);
                 windDirection.text("Wind Direction : " + degToCard(deg));
                 let desc = $("#desc" + i);
-                desc.text(listDay[i].weather[0].description);
-                let uvImg = $("#uvImg" + i);
+                desc.text("Description : " + listDay[i].weather[0].description);
+                let humid = $("#humid" + i);
+                humid.text("Humidity : " + listDay[i].main.humidity + " %")
+                let weatherImg = $('<img class="w3-image" id="weatherImg' + i + '" alt = "Weather Related Img" style="width: 100 % ">')
+                $("#img" + i).html(weatherImg);
+                console.log(weatherImg, "check this for src")
+                $("#weatherImg" + i).attr("src","./assets/" + listDay[i].weather[0].icon + ".png")
+                console.log(listDay[i].weather[0].icon)
+                
                 
                 // weather picture, need to figure out API code for image
                 //$("#weatherImg")
@@ -103,9 +114,9 @@ $(document).ready(function () {
             
 
 
-
+        
         })
-    };
+    }
 
     // API call for UV INDEX
     function uvCall(lat,lon) {
@@ -117,8 +128,25 @@ $(document).ready(function () {
             method: "GET",
         };
         $.ajax(response).done(function (response) {
-                let uvId = $("#uv")
-                uvId.text("Current Uv index : " + response.value);
+            let uvDesc = $("#uvDesc")
+            let uvId = $("#uv")
+            let uvDescription = "";
+            let uvVal = response.value;
+            if (uvVal > 0 && uvVal <= 2.99) {
+                uvDescription = "Low";
+                uvId.addClass("low")
+            } else if (uvVal >= 3 && uvVal <= 5.99) {
+                uvDescription = "Moderate";
+                uvId.addClass("moderate")
+            } else if (uvVal >= 6 && uvVal <= 7.99) {
+                uvDescription = "High";
+                uvId.addClass("high")
+            } else if (uvVal >= 8 && uvVal <= 10.99) {
+                uvDescription = "Very High";
+                uvId.addClass("vHigh")
+            };
+            uvDesc.text("Current Uv index : " + uvDescription);
+
             
         })
     
@@ -141,7 +169,9 @@ $(document).ready(function () {
 // onclick for searching the weather/storing the searched term into the localStorage/cityArr
     $("#searchBtn").on("click", function () {
         event.preventDefault();
-        displayForecastWeather();
+        var city = $("#cityInput").val();
+        displayForecastWeather(city);
+        storeCity();
         // showWeather();
         // console.log(day1, "main search BTN ")
     });
@@ -150,7 +180,8 @@ $(document).ready(function () {
 // added search btn
     $("#searchBtn1").on('click', function () {
         event.preventDefault();
-        displayForecastWeather();
+        var city = localStorage.getItem('city');
+        displayForecastWeather(city);
         // showWeather();
         // console.log(day1, "searchBtn1")
 
