@@ -86,9 +86,7 @@ $(document).ready(function () {
             console.log(listDay)
             for (i = 0; i < 5; i++) {
                 var deg = listDay[i].wind.deg;
-
-                let city = $("#cityName" + i);
-                city.text(response.city.name + " " + listDay[i].main.temp + " °F");
+                $("cityName" + i).html(response.city.name + " " + listDay[i].main.temp + " °F");
                 // let cityTemp = $("#cityTemp" + i);
                 // cityTemp.text(listDay[i].main.temp + " °F")
                 let cityDate = $("#date" + i);
@@ -101,8 +99,8 @@ $(document).ready(function () {
                 desc.text("Description : " + listDay[i].weather[0].description);
                 let humid = $("#humid" + i);
                 humid.text("Humidity : " + listDay[i].main.humidity + " %")
-                let weatherImg = $('<img class="w3-image" id="weatherImg' + i + '" alt = "Weather Related Img" style="width: 100 % ">')
-                $("#img" + i).html(weatherImg);
+                let weatherImg = $('<img class="w3-image" id="weatherImg' + i + '" alt = "Weather Related Img" style="width: 100% ">')
+                $("#img" + i).append(weatherImg);
                 console.log(weatherImg, "check this for src")
                 $("#weatherImg" + i).attr("src","./assets/" + listDay[i].weather[0].icon + ".png")
                 console.log(listDay[i].weather[0].icon)
@@ -147,7 +145,6 @@ $(document).ready(function () {
             };
             uvDesc.text("Current Uv index : " + uvDescription);
 
-            
         })
     
     };
@@ -171,7 +168,7 @@ $(document).ready(function () {
         event.preventDefault();
         var city = $("#cityInput").val();
         displayForecastWeather(city);
-        storeCity();
+       
         // showWeather();
         // console.log(day1, "main search BTN ")
     });
@@ -182,9 +179,7 @@ $(document).ready(function () {
         event.preventDefault();
         var city = localStorage.getItem('city');
         displayForecastWeather(city);
-        // showWeather();
-        // console.log(day1, "searchBtn1")
-
+        storeCity();
     }) 
 
 });
