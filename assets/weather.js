@@ -86,7 +86,7 @@ $(document).ready(function () {
             console.log(listDay)
             for (i = 0; i < 5; i++) {
                 var deg = listDay[i].wind.deg;
-                $("cityName" + i).html(response.city.name + " " + listDay[i].main.temp + " °F");
+                $("#cityName" + i).html(response.city.name + " " + listDay[i].main.temp + " °F");
                 // let cityTemp = $("#cityTemp" + i);
                 // cityTemp.text(listDay[i].main.temp + " °F")
                 let cityDate = $("#date" + i);
